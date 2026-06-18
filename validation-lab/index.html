@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<!--
+  ===========================================================================
+   PRE-SELL VALIDATION LANDING PAGE  —  reusable demand test
+  ===========================================================================
+  PURPOSE: Test whether a product idea has real buyers BEFORE you build it.
+  You change a few lines of text, host this free, send a little traffic,
+  and measure how many people click "I want this". That number IS your
+  validation. No clicks = don't build it. Clicks = build it.
+
+  HOW TO USE (5 minutes):
+  1. Edit the CONFIG block in the <script> at the bottom (product name,
+     promise, price, bullets).
+  2. Get a free form endpoint at https://formspree.io (free tier captures
+     emails). Paste your endpoint URL into CONFIG.formEndpoint.
+     (Leave it blank to just demo locally — it will show a success message
+      without sending.)
+  3. Host free: drag this folder onto https://app.netlify.com/drop
+  4. Send traffic (Pinterest pins, a relevant Reddit comment, a $20 ad test).
+  5. Check Formspree for sign-ups. >2-3% of visitors signing up = real signal.
+  ===========================================================================
+-->
+<title>Loading…</title>
+<style>
+  :root{
+    --bg:#0b0d12;--card:#151922;--border:#262c38;--text:#eef1f6;--muted:#9aa4b4;
+    --accent:#6d5efc;--accent2:#00d4b8;--radius:16px;
+    --font:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--font);background:
+    radial-gradient(900px 500px at 80% -10%,rgba(109,94,252,.25),transparent),
+    radial-gradient(700px 500px at 0% 110%,rgba(0,212,184,.18),transparent),
+    var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+  .wrap{max-width:680px;margin:0 auto;padding:56px 22px 80px}
+  .eyebrow{display:inline-block;background:rgba(109,94,252,.15);color:#bcb4ff;
+    border:1px solid rgba(109,94,252,.4);padding:6px 14px;border-radius:30px;
+    font-size:13px;font-weight:700;letter-spacing:.3px;margin-bottom:22px}
+  h1{font-size:clamp(30px,6vw,46px);line-height:1.12;letter-spacing:-1px;font-weight:800;margin-bottom:16px}
+  h1 .hl{background:linear-gradient(120deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:18px;color:var(--muted);margin-bottom:34px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;margin-bottom:24px}
+  ul.bullets{list-style:none;margin:6px 0}
+  ul.bullets li{padding:9px 0 9px 32px;position:relative;font-size:16px}
+  ul.bullets li::before{content:"✓";position:absolute;left:0;top:8px;color:var(--accent2);font-weight:900}
+  .price{font-size:15px;color:var(--muted);margin:4px 0 0}
+  .price b{color:var(--text);font-size:22px}
+  .price s{opacity:.5}
+  form{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+  .formrow{display:flex;gap:10px;flex-wrap:wrap}
+  input[type=email]{flex:1;min-width:220px;background:#0e1219;border:1px solid var(--border);
+    border-radius:12px;color:var(--text);padding:15px 16px;font-size:16px;font-family:var(--font)}
+  input:focus{outline:none;border-color:var(--accent)}
+  button{background:linear-gradient(120deg,var(--accent),var(--accent2));color:#06101a;
+    border:none;border-radius:12px;font-weight:800;font-size:16px;padding:15px 24px;cursor:pointer;font-family:var(--font);white-space:nowrap}
+  button:active{transform:translateY(1px)}
+  .micro{font-size:13px;color:var(--muted);text-align:center;margin-top:4px}
+  .success{display:none;text-align:center;padding:30px 10px}
+  .success.show{display:block}
+  .success .big{font-size:46px;margin-bottom:8px}
+  .proof{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:14px;margin-top:18px;justify-content:center}
+  .proof span{display:flex;align-items:center;gap:6px}
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:30px}
+  .counter{font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow" id="eyebrow">EARLY ACCESS</span>
+  <h1 id="headline"></h1>
+  <p class="sub" id="subhead"></p>
+
+  <div class="card">
+    <ul class="bullets" id="bullets"></ul>
+    <p class="price" id="price"></p>
+  </div>
+
+  <div class="card">
+    <div id="formArea">
+      <form id="signup">
+        <div class="formrow">
+          <input type="email" id="email" placeholder="your@email.com" required autocomplete="email">
+          <button type="submit" id="ctaBtn">I want this →</button>
+        </div>
+        <p class="micro" id="microcopy"></p>
+      </form>
+    </div>
+    <div class="success" id="success">
+      <div class="big">🎉</div>
+      <strong id="successTitle">You're on the list!</strong>
+      <p class="micro" id="successMsg" style="margin-top:8px"></p>
+    </div>
+    <div class="proof">
+      <span>🔒 No spam</span>
+      <span>⚡ <span class="counter" id="spots"></span> early spots</span>
+      <span>💸 Founder price</span>
+    </div>
+  </div>
+
+  <footer id="footer"></footer>
+</div>
+
+<script>
+/* =========================================================================
+   CONFIG — edit this block per product idea you want to test.
+   ========================================================================= */
+const CONFIG = {
+  eyebrow:    "EARLY ACCESS · FOUNDER PRICE",
+  product:    "The Realtor Listing Content Kit",
+  // Headline: the transformation, not the features. Wrap the punchy part in <span class="hl">…</span>.
+  headline:   "Post like a <span class=\"hl\">top-producing agent</span> — without touching a design app",
+  subhead:    "60 editable Canva templates + captions built for real estate agents: Just Listed, Open House, Just Sold, market updates and more. Edit your photo, hit post.",
+  bullets: [
+    "60 editable Canva templates (Just Listed, Just Sold, Open House, Market Update, About Me)",
+    "60 ready-to-paste captions written for agents — no more blank-page staring",
+    "A 30-day posting calendar so you always know what to post next",
+    "Matches your brand colors in two clicks · yours forever, no monthly fee"
+  ],
+  priceLine:  'Founder price: <b>$27</b> &nbsp;<s>$59</s> &nbsp;(first 50 agents)',
+  ctaText:    "Get founder access →",
+  microcopy:  "Drop your email — you'll get the founder discount the day it launches.",
+  successMsg: "You're in! Watch your inbox for the founder discount. Reply and tell me the ONE post you struggle with most — I'll build it in.",
+  spots:      50,
+  footer:     "An independent product · built for real estate agents",
+
+  // Paste your https://formspree.io/f/XXXX endpoint here to actually capture emails.
+  // Leave "" to demo locally (shows success without sending).
+  formEndpoint: "https://formspree.io/f/mykaqkeg"
+};
+/* ===================== end config ===================== */
+
+document.title = CONFIG.product;
+document.getElementById("eyebrow").textContent = CONFIG.eyebrow;
+document.getElementById("headline").innerHTML = CONFIG.headline;
+document.getElementById("subhead").textContent = CONFIG.subhead;
+document.getElementById("price").innerHTML = CONFIG.priceLine;
+document.getElementById("ctaBtn").textContent = CONFIG.ctaText;
+document.getElementById("microcopy").textContent = CONFIG.microcopy;
+document.getElementById("successMsg").textContent = CONFIG.successMsg;
+document.getElementById("spots").textContent = CONFIG.spots;
+document.getElementById("footer").textContent = CONFIG.footer;
+
+const bl = document.getElementById("bullets");
+CONFIG.bullets.forEach(b=>{ const li=document.createElement("li"); li.textContent=b; bl.appendChild(li); });
+
+document.getElementById("signup").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const email = document.getElementById("email").value.trim();
+  if(!email) return;
+  const btn = document.getElementById("ctaBtn");
+  btn.disabled = true; btn.textContent = "…";
+
+  // Local "interest log" so you can eyeball signal even before wiring Formspree.
+  try{
+    const log = JSON.parse(localStorage.getItem("presell_log")||"[]");
+    log.push({email, t:Date.now()}); localStorage.setItem("presell_log", JSON.stringify(log));
+  }catch(_){}
+
+  if(CONFIG.formEndpoint){
+    try{
+      await fetch(CONFIG.formEndpoint,{
+        method:"POST",
+        headers:{"Accept":"application/json","Content-Type":"application/json"},
+        body:JSON.stringify({email, product:CONFIG.product})
+      });
+    }catch(_){ /* still show success; you'll see it in localStorage too */ }
+  }
+  document.getElementById("formArea").style.display="none";
+  document.getElementById("success").classList.add("show");
+});
+</script>
+</body>
+</html>

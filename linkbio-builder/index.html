@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BioLink Builder — Make your own link-in-bio page</title>
+<meta name="description" content="Build a beautiful link-in-bio page and export it as a single HTML file you host for free. No subscriptions, no code.">
+<style>
+  :root{
+    --bg:#0f1115;--panel:#171a21;--panel2:#1f232c;--border:#2a2f3a;
+    --text:#e8eaf0;--muted:#9aa3b2;--accent:#6d5efc;--accent2:#00d4b8;
+    --radius:14px;--shadow:0 12px 40px rgba(0,0,0,.35);
+    --font:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.5}
+  a{color:var(--accent)}
+  header.app{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid var(--border);background:var(--panel);position:sticky;top:0;z-index:5}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.3px}
+  .brand .dot{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+  .hbtns{display:flex;gap:10px;flex-wrap:wrap}
+  button{font-family:var(--font);cursor:pointer;border:none;border-radius:10px;font-weight:700;font-size:14px;padding:10px 16px;transition:.15s transform,.15s opacity}
+  button:active{transform:translateY(1px)}
+  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+  .btn-ghost{background:var(--panel2);color:var(--text);border:1px solid var(--border)}
+  .btn-danger{background:transparent;color:#ff6b6b;border:1px solid #3a2a2f;padding:6px 10px;font-size:13px}
+  .layout{display:grid;grid-template-columns:1fr 420px;gap:0;min-height:calc(100vh - 61px)}
+  .editor{padding:24px;overflow:auto}
+  .preview-wrap{background:radial-gradient(circle at 50% 0%,#1b1f29,#0d0f14);border-left:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:32px 20px;position:sticky;top:61px;height:calc(100vh - 61px)}
+  h2.section{font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin:28px 0 12px}
+  h2.section:first-child{margin-top:0}
+  .field{margin-bottom:14px}
+  label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:600}
+  input[type=text],input[type=url],textarea{width:100%;background:var(--panel);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:11px 13px;font-size:14px;font-family:var(--font)}
+  input:focus,textarea:focus{outline:none;border-color:var(--accent)}
+  textarea{resize:vertical;min-height:64px}
+  .row{display:flex;gap:10px}
+  .row .field{flex:1}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:24px}
+  .link-item{background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:10px}
+  .link-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .link-head .grab{cursor:grab;color:var(--muted);font-size:18px;user-select:none}
+  .link-head strong{flex:1;font-size:14px}
+  .themes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .theme{border:2px solid var(--border);border-radius:12px;height:62px;cursor:pointer;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:6px;font-size:11px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+  .theme.active{border-color:var(--accent);box-shadow:0 0 0 3px rgba(109,94,252,.25)}
+  /* Phone preview */
+  .phone{width:320px;max-width:100%;height:640px;border-radius:38px;border:10px solid #05060a;background:#000;box-shadow:var(--shadow);overflow:hidden;position:relative}
+  .phone iframe{width:100%;height:100%;border:none;background:#fff}
+  .hint{color:var(--muted);font-size:12px;margin-top:14px;text-align:center;max-width:320px}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(40px);background:var(--accent2);color:#062a25;font-weight:800;padding:12px 22px;border-radius:30px;opacity:0;transition:.3s;z-index:50}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .small{font-size:12px;color:var(--muted)}
+  @media (max-width:900px){.layout{grid-template-columns:1fr}.preview-wrap{position:relative;top:0;height:auto;border-left:none;border-top:1px solid var(--border)}}
+</style>
+</head>
+<body>
+<header class="app">
+  <div class="brand"><span class="dot"></span> BioLink Builder</div>
+  <div class="hbtns">
+    <button class="btn-ghost" onclick="resetAll()">Reset</button>
+    <button class="btn-primary" onclick="exportPage()">⬇ Export my page</button>
+  </div>
+</header>
+
+<div class="layout">
+  <!-- EDITOR -->
+  <div class="editor">
+    <div class="card">
+      <h2 class="section">Profile</h2>
+      <div class="field">
+        <label>Avatar — emoji or image URL</label>
+        <input type="text" id="avatar" placeholder="🚀  or  https://…/photo.jpg" oninput="render()">
+      </div>
+      <div class="field">
+        <label>Display name</label>
+        <input type="text" id="name" placeholder="Alex Rivera" oninput="render()">
+      </div>
+      <div class="field">
+        <label>Bio</label>
+        <textarea id="bio" placeholder="Creator. Coffee enthusiast. Linking everything below 👇" oninput="render()"></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">Theme</h2>
+      <div class="themes" id="themes"></div>
+    </div>
+
+    <div class="card">
+      <h2 class="section">Links</h2>
+      <div id="links"></div>
+      <button class="btn-ghost" style="width:100%;margin-top:6px" onclick="addLink()">＋ Add link</button>
+    </div>
+
+    <p class="small">Everything saves automatically in this browser. When you're happy, hit
+      <strong>Export my page</strong> to download a single <code>index.html</code> you can host
+      anywhere for free (GitHub Pages, Netlify, Cloudflare Pages…).</p>
+  </div>
+
+  <!-- PREVIEW -->
+  <div class="preview-wrap">
+    <div class="phone"><iframe id="preview" title="Live preview"></iframe></div>
+    <p class="hint">Live preview — this is exactly what visitors see on their phone.</p>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- Themes ---------- */
+const THEMES = {
+  midnight:{name:"Midnight", bg:"linear-gradient(160deg,#0f2027,#203a43,#2c5364)", text:"#ffffff", card:"rgba(255,255,255,.12)", cardText:"#ffffff", border:"rgba(255,255,255,.18)"},
+  sunset:{name:"Sunset", bg:"linear-gradient(160deg,#ff9a9e,#fad0c4,#fbc2eb)", text:"#3a2233", card:"rgba(255,255,255,.55)", cardText:"#3a2233", border:"rgba(255,255,255,.7)"},
+  mono:{name:"Mono", bg:"#fafafa", text:"#111111", card:"#ffffff", cardText:"#111111", border:"#e4e4e4"},
+  forest:{name:"Forest", bg:"linear-gradient(160deg,#134e5e,#71b280)", text:"#ffffff", card:"rgba(255,255,255,.14)", cardText:"#ffffff", border:"rgba(255,255,255,.22)"},
+  grape:{name:"Grape", bg:"linear-gradient(160deg,#41295a,#2F0743)", text:"#ffffff", card:"rgba(255,255,255,.12)", cardText:"#ffffff", border:"rgba(255,255,255,.2)"},
+  peach:{name:"Peach", bg:"linear-gradient(160deg,#f6d365,#fda085)", text:"#5a2d1f", card:"rgba(255,255,255,.6)", cardText:"#5a2d1f", border:"rgba(255,255,255,.8)"},
+  ocean:{name:"Ocean", bg:"linear-gradient(160deg,#2193b0,#6dd5ed)", text:"#063040", card:"rgba(255,255,255,.5)", cardText:"#063040", border:"rgba(255,255,255,.75)"},
+  ink:{name:"Ink", bg:"#0d0d0f", text:"#f2f2f5", card:"#1c1c22", cardText:"#f2f2f5", border:"#2c2c35"},
+  candy:{name:"Candy", bg:"linear-gradient(160deg,#a18cd1,#fbc2eb)", text:"#3d2350", card:"rgba(255,255,255,.55)", cardText:"#3d2350", border:"rgba(255,255,255,.8)"}
+};
+
+/* ---------- State ---------- */
+const DEFAULT = {
+  avatar:"🚀", name:"Your Name", bio:"Creator. Linking everything below 👇",
+  theme:"midnight",
+  links:[
+    {emoji:"🌐", title:"My Website", url:"https://example.com"},
+    {emoji:"📸", title:"Instagram", url:"https://instagram.com"},
+    {emoji:"🎥", title:"YouTube", url:"https://youtube.com"},
+    {emoji:"✉️", title:"Email me", url:"mailto:hello@example.com"}
+  ]
+};
+let state = load();
+
+function load(){
+  try{ const s = JSON.parse(localStorage.getItem("biolink")); if(s&&s.links) return s; }catch(e){}
+  return structuredClone(DEFAULT);
+}
+function save(){ localStorage.setItem("biolink", JSON.stringify(state)); }
+
+/* ---------- Editor rendering ---------- */
+function renderThemes(){
+  const wrap = document.getElementById("themes");
+  wrap.innerHTML = "";
+  for(const key in THEMES){
+    const t = THEMES[key];
+    const el = document.createElement("div");
+    el.className = "theme"+(state.theme===key?" active":"");
+    el.style.background = t.bg;
+    el.style.color = t.text;
+    el.textContent = t.name;
+    el.onclick = ()=>{ state.theme=key; render(); };
+    wrap.appendChild(el);
+  }
+}
+
+function renderLinks(){
+  const wrap = document.getElementById("links");
+  wrap.innerHTML = "";
+  state.links.forEach((lnk,i)=>{
+    const div = document.createElement("div");
+    div.className = "link-item";
+    div.innerHTML = `
+      <div class="link-head">
+        <span class="grab" title="Reorder">⋮⋮</span>
+        <strong>Link ${i+1}</strong>
+        <button class="btn-ghost" style="padding:4px 9px;font-size:13px" onclick="move(${i},-1)">↑</button>
+        <button class="btn-ghost" style="padding:4px 9px;font-size:13px" onclick="move(${i},1)">↓</button>
+        <button class="btn-danger" onclick="removeLink(${i})">Delete</button>
+      </div>
+      <div class="row">
+        <div class="field" style="max-width:74px">
+          <label>Icon</label>
+          <input type="text" value="${esc(lnk.emoji)}" oninput="upd(${i},'emoji',this.value)" placeholder="🔗">
+        </div>
+        <div class="field">
+          <label>Label</label>
+          <input type="text" value="${esc(lnk.title)}" oninput="upd(${i},'title',this.value)" placeholder="My link">
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label>URL</label>
+        <input type="url" value="${esc(lnk.url)}" oninput="upd(${i},'url',this.value)" placeholder="https://…">
+      </div>`;
+    wrap.appendChild(div);
+  });
+}
+
+function syncInputs(){
+  document.getElementById("avatar").value = state.avatar;
+  document.getElementById("name").value = state.name;
+  document.getElementById("bio").value = state.bio;
+}
+
+/* ---------- Mutations ---------- */
+function upd(i,k,v){ state.links[i][k]=v; save(); updatePreview(); }
+function addLink(){ state.links.push({emoji:"🔗",title:"New link",url:"https://"}); render(); }
+function removeLink(i){ state.links.splice(i,1); render(); }
+function move(i,d){ const j=i+d; if(j<0||j>=state.links.length) return; [state.links[i],state.links[j]]=[state.links[j],state.links[i]]; render(); }
+function resetAll(){ if(confirm("Reset everything to the starter template?")){ state=structuredClone(DEFAULT); render(); } }
+
+["avatar","name","bio"].forEach(id=>{
+  document.addEventListener("input",e=>{
+    if(e.target.id===id){ state[id]=e.target.value; save(); updatePreview(); }
+  });
+});
+
+/* ---------- Preview / output ---------- */
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function isImg(s){ return /^https?:\/\//i.test(s.trim()); }
+
+function buildPage(){
+  const t = THEMES[state.theme] || THEMES.midnight;
+  const av = isImg(state.avatar)
+    ? `<img class="avatar" src="${esc(state.avatar)}" alt="${esc(state.name)}">`
+    : `<div class="avatar emoji">${esc(state.avatar||"🙂")}</div>`;
+  const links = state.links.map(l=>`
+      <a class="link" href="${esc(l.url)}" target="_blank" rel="noopener">
+        <span class="ic">${esc(l.emoji||"🔗")}</span>
+        <span class="lbl">${esc(l.title||"Link")}</span>
+      </a>`).join("");
+  return `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>${esc(state.name)}</title>
+<meta name="description" content="${esc(state.bio)}">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:${t.bg};min-height:100vh;color:${t.text};
+  display:flex;justify-content:center;padding:48px 20px}
+.wrap{width:100%;max-width:540px;text-align:center}
+.avatar{width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto 16px;
+  border:3px solid ${t.border};display:flex;align-items:center;justify-content:center;background:${t.card}}
+.avatar.emoji{font-size:48px}
+h1{font-size:24px;font-weight:800;margin-bottom:8px}
+.bio{opacity:.85;margin-bottom:28px;font-size:15px;line-height:1.5}
+.link{display:flex;align-items:center;gap:12px;background:${t.card};color:${t.cardText};
+  border:1px solid ${t.border};border-radius:14px;padding:15px 18px;margin-bottom:14px;
+  text-decoration:none;font-weight:700;font-size:16px;
+  backdrop-filter:blur(6px);transition:transform .12s ease,box-shadow .12s ease}
+.link:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.link .ic{font-size:20px;width:26px;text-align:center}
+.link .lbl{flex:1;text-align:center;margin-right:26px}
+footer{margin-top:28px;font-size:12px;opacity:.55}
+footer a{color:inherit}
+</style></head>
+<body><div class="wrap">
+  ${av}
+  <h1>${esc(state.name)}</h1>
+  <p class="bio">${esc(state.bio)}</p>
+  ${links}
+  <footer>Made with BioLink Builder</footer>
+</div></body></html>`;
+}
+
+function updatePreview(){
+  document.getElementById("preview").srcdoc = buildPage();
+  save();
+}
+function render(){ renderThemes(); renderLinks(); syncInputs(); updatePreview(); }
+
+function exportPage(){
+  const blob = new Blob([buildPage()],{type:"text/html"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "index.html";
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast("Downloaded index.html — upload it anywhere to go live!");
+}
+
+let toastT;
+function toast(msg){
+  const el=document.getElementById("toast");
+  el.textContent=msg; el.classList.add("show");
+  clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove("show"),3200);
+}
+
+render();
+</script>
+</body>
+</html>
