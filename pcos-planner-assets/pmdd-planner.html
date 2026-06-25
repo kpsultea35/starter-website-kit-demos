@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PMDD Symptom Tracker & Cycle Planner</title>
+<style>
+  @page { size: Letter; margin: 0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  :root{
+    --pink:#B9A0C9; --pink-soft:#ECE3F2; --mauve:#7E5C97; --cream:#FBF7FC;
+    --sage:#A0B3C9; --sage-soft:#E6ECF2; --ink:#4F4658; --line:#D8CCE0;
+  }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:'Nunito','Lato',Arial,sans-serif; color:var(--ink); }
+  .page{ width:8.5in; height:11in; padding:0.6in 0.7in; position:relative;
+    page-break-after:always; background:var(--cream); display:flex; flex-direction:column; }
+  .page:last-child{ page-break-after:auto; }
+  h1{ font-family:'Poppins','Quicksand',sans-serif; }
+  .h-page{ font-family:'Poppins',sans-serif; font-size:23px; color:var(--mauve); font-weight:700; margin-bottom:4px; }
+  .sub{ font-size:12px; color:var(--pink); margin-bottom:16px; letter-spacing:.5px; }
+  .footer{ position:absolute; bottom:0.35in; left:0.7in; right:0.7in; text-align:center;
+    font-size:9px; color:#B3A6BD; border-top:1px solid var(--line); padding-top:6px; }
+  .pg{ position:absolute; bottom:0.35in; right:0.7in; font-size:9px; color:#B3A6BD; }
+  .box{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px 18px; margin-bottom:14px; }
+  .row{ display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px dashed var(--line); font-size:13px; }
+  .row:last-child{ border-bottom:none; }
+  .scale span{ display:inline-block; width:21px; height:21px; line-height:21px; text-align:center;
+    border:1px solid var(--line); border-radius:50%; margin-left:4px; font-size:10px; color:var(--mauve); }
+  .cb{ display:inline-block; width:15px; height:15px; border:1.5px solid var(--mauve); border-radius:4px; margin-right:5px; vertical-align:middle; }
+  .line{ border-bottom:1px solid var(--line); height:20px; margin:8px 0; }
+  table{ width:100%; border-collapse:collapse; font-size:11px; }
+  th{ background:var(--sage-soft); color:var(--ink); font-weight:700; padding:6px 5px; text-align:left; border:1px solid var(--line); }
+  td{ padding:8px 5px; border:1px solid var(--line); }
+  .pill{ display:inline-block; border:1px solid var(--line); border-radius:20px; padding:4px 12px; margin:3px 4px 3px 0; font-size:12px; background:#fff; }
+  .cover{ background:linear-gradient(160deg,var(--pink-soft),var(--cream) 60%,var(--sage-soft)); align-items:center; justify-content:center; text-align:center; }
+  .cover h1{ font-size:48px; color:var(--mauve); line-height:1.08; }
+  .cover .tag{ font-size:17px; color:var(--pink); margin-top:14px; font-family:'Poppins',sans-serif; }
+  .cover .shop{ position:absolute; bottom:0.6in; font-size:12px; color:#B3A6BD; }
+  .intro p{ font-size:13.5px; line-height:1.7; margin-bottom:11px; }
+  .intro li{ font-size:13.5px; line-height:1.8; margin-left:20px; }
+  .disc{ font-size:11px; color:#928499; background:#fff; border:1px dashed var(--line); border-radius:12px; padding:12px 14px; margin-top:12px; line-height:1.6; }
+  .legendbar{ font-size:11px; color:var(--ink); margin:6px 0 10px; }
+  .sev{ display:inline-block; width:14px; height:14px; border-radius:3px; vertical-align:middle; margin:0 3px 0 8px; border:1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<section class="page cover">
+  <div style="font-size:54px;">🌙</div>
+  <h1>PMDD<br>Symptom Tracker<br>&amp; Cycle Planner</h1>
+  <div class="tag">understand your patterns • feel more prepared</div>
+  <div style="margin-top:24px;"><span class="pill">undated</span><span class="pill">2-cycle tracking</span><span class="pill">printable + digital</span></div>
+  <div class="shop">[ your shop name ]</div>
+</section>
+
+<!-- 2 WELCOME -->
+<section class="page intro">
+  <div class="h-page">Welcome 🌙</div>
+  <div class="sub">HOW TO USE THIS PLANNER</div>
+  <p>PMDD symptoms tend to follow your cycle — often appearing in the days before your period and easing once it begins. Tracking daily, across <b>at least two full cycles</b>, helps you and your healthcare provider see your unique pattern clearly.</p>
+  <ul>
+    <li>Fill in the <b>daily tracker</b> each evening — it only takes a minute</li>
+    <li>Use the <b>monthly symptom chart</b> to see your pattern at a glance</li>
+    <li>Compare two cycles side by side to spot consistency</li>
+    <li>Bring the <b>appointment-prep</b> pages to your visits</li>
+  </ul>
+  <p>Be gentle with yourself. This is a tool for clarity, not judgment. 💜</p>
+  <div class="disc"><b>Disclaimer:</b> This planner is a personal organization and tracking tool only. It is not medical advice and is not intended to diagnose, treat, cure, or prevent any condition, including PMDD. Always consult a qualified healthcare provider for diagnosis and care.</div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">2</div>
+</section>
+
+<!-- 3 UNDERSTANDING (neutral, educational, no claims) -->
+<section class="page intro">
+  <div class="h-page">Tracking &amp; Your Cycle</div>
+  <div class="sub">A QUICK ORIENTATION</div>
+  <div class="box">
+    <p style="margin-bottom:0;">Many people find it helpful to note which <b>phase</b> of the cycle they're in when logging symptoms. A simple way to mark it:</p>
+  </div>
+  <div class="box">
+    <div class="row"><span>🩸 <b>Menstrual</b> — your period</span><span>days ~1–5</span></div>
+    <div class="row"><span>🌱 <b>Follicular</b> — after period</span><span>days ~6–13</span></div>
+    <div class="row"><span>✨ <b>Ovulation</b> — mid-cycle</span><span>days ~14</span></div>
+    <div class="row"><span>🌙 <b>Luteal</b> — before next period</span><span>days ~15–28</span></div>
+  </div>
+  <p style="font-size:12px; color:#928499;">Cycle lengths vary — these are general ranges, not rules. Use the trackers to learn <i>your</i> rhythm.</p>
+  <div class="box" style="margin-top:6px;">
+    <div style="font-size:13px;">My typical cycle length: ______ days &nbsp;&nbsp;|&nbsp;&nbsp; My period usually lasts: ______ days</div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">3</div>
+</section>
+
+<!-- 4 DAILY TRACKER (DRSP-inspired) -->
+<section class="page">
+  <div class="h-page">Daily Symptom Tracker</div>
+  <div class="sub">DATE: ___________ &nbsp; CYCLE DAY: ______ &nbsp; PHASE: 🩸🌱✨🌙 &nbsp; RATE 1 (NONE) – 5 (EXTREME)</div>
+  <div class="box">
+    <div style="font-size:12px; color:var(--mauve); font-weight:700; margin-bottom:6px;">EMOTIONAL</div>
+    <div class="row scale"><span>Sadness / low mood</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Anxiety / tension</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Mood swings</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Irritability / anger</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Overwhelm</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+  </div>
+  <div class="box">
+    <div style="font-size:12px; color:var(--mauve); font-weight:700; margin-bottom:6px;">PHYSICAL &amp; OTHER</div>
+    <div class="row scale"><span>Fatigue / low energy</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Sleep problems</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Appetite / cravings</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Bloating / physical</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Trouble focusing</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+  </div>
+  <div class="box">
+    <div class="row"><span>Did symptoms affect daily life today?</span><span><span class="cb"></span>Not at all&nbsp;&nbsp;<span class="cb"></span>Some&nbsp;&nbsp;<span class="cb"></span>A lot</span></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">4</div>
+</section>
+
+<!-- 5 MONTHLY SYMPTOM CHART (the killer page) -->
+<section class="page">
+  <div class="h-page">Monthly Symptom Chart ⭐</div>
+  <div class="sub">CYCLE / MONTH: ___________ — SHADE EACH BOX BY SEVERITY TO SEE YOUR PATTERN</div>
+  <div class="legendbar">Severity: <span class="sev" style="background:#fff;"></span>none <span class="sev" style="background:#ECE3F2;"></span>mild <span class="sev" style="background:#C9B3D9;"></span>moderate <span class="sev" style="background:#7E5C97;"></span>severe</div>
+  <div id="chart"></div>
+  <div style="font-size:11px; color:#928499; margin-top:8px;">Tip: mark your period days (P) along the top so you can see how symptoms line up with your cycle.</div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">5</div>
+</section>
+
+<!-- 6 TWO-CYCLE COMPARISON -->
+<section class="page">
+  <div class="h-page">Two-Cycle Comparison</div>
+  <div class="sub">SEE IF YOUR PATTERN REPEATS</div>
+  <table>
+    <tr><th>Symptom</th><th>Cycle 1 — worst day(s)</th><th>Cycle 1 severity</th><th>Cycle 2 — worst day(s)</th><th>Cycle 2 severity</th></tr>
+    <tr><td>Low mood</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Anxiety</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Irritability</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Mood swings</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Fatigue</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Sleep</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Focus</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Physical</td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <div class="box" style="margin-top:16px;">
+    <div style="font-size:13px;">What pattern do I notice across both cycles?</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">6</div>
+</section>
+
+<!-- 7 TRIGGERS & COPING -->
+<section class="page">
+  <div class="h-page">Triggers &amp; What Helps</div>
+  <div class="sub">BUILD YOUR TOOLKIT</div>
+  <div class="box">
+    <div style="font-size:13px;">Things that seem to make symptoms harder</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">Things that help me feel better</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px; margin-bottom:8px;">My go-to coping strategies</div>
+    <span class="pill">rest</span><span class="pill">movement</span><span class="pill">time outside</span><span class="pill">talking to someone</span><span class="pill">journaling</span><span class="pill">lower my to-do list</span><span class="pill">+ add your own</span>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">7</div>
+</section>
+
+<!-- 8 MOOD & JOURNAL -->
+<section class="page">
+  <div class="h-page">Mood &amp; Reflection</div>
+  <div class="sub">DATE: ___________________</div>
+  <div class="box" style="text-align:center;">
+    <div style="font-size:13px; margin-bottom:10px;">How I felt overall today</div>
+    <span style="font-size:32px;">😀&nbsp;&nbsp;🙂&nbsp;&nbsp;😐&nbsp;&nbsp;😟&nbsp;&nbsp;😢</span>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">What I want to remember about today</div>
+    <div class="line"></div><div class="line"></div>
+    <div style="font-size:13px;">One kind thing I did for myself</div><div class="line"></div>
+    <div style="font-size:13px;">Free journaling</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">8</div>
+</section>
+
+<!-- 9 SLEEP -->
+<section class="page">
+  <div class="h-page">Sleep Tracker</div>
+  <div class="sub">WEEK OF: ___________________</div>
+  <table>
+    <tr><th>Day</th><th>Bedtime</th><th>Wake</th><th>Hours</th><th>Quality (1–5)</th><th>Cycle day</th></tr>
+    <tr><td>Mon</td><td></td><td></td><td></td><td>1 2 3 4 5</td><td></td></tr>
+    <tr><td>Tue</td><td></td><td></td><td></td><td>1 2 3 4 5</td><td></td></tr>
+    <tr><td>Wed</td><td></td><td></td><td></td><td>1 2 3 4 5</td><td></td></tr>
+    <tr><td>Thu</td><td></td><td></td><td></td><td>1 2 3 4 5</td><td></td></tr>
+    <tr><td>Fri</td><td></td><td></td><td></td><td>1 2 3 4 5</td><td></td></tr>
+    <tr><td>Sat</td><td></td><td></td><td></td><td>1 2 3 4 5</td><td></td></tr>
+    <tr><td>Sun</td><td></td><td></td><td></td><td>1 2 3 4 5</td><td></td></tr>
+  </table>
+  <div class="box" style="margin-top:16px;"><div style="font-size:13px;">Notes / patterns</div><div class="line"></div></div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">9</div>
+</section>
+
+<!-- 10 MEDICATION / SUPPLEMENT -->
+<section class="page">
+  <div class="h-page">Medication &amp; Supplement Tracker</div>
+  <div class="sub">WEEK OF: ___________________ &nbsp; (TRACKING ONLY)</div>
+  <table>
+    <tr><th>Name / Item</th><th>Dose</th><th>Time</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <div class="box" style="margin-top:16px;"><div style="font-size:13px;">Notes / side effects to mention to my provider</div><div class="line"></div><div class="line"></div></div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">10</div>
+</section>
+
+<!-- 11 APPOINTMENT PREP -->
+<section class="page">
+  <div class="h-page">Appointment Prep ⭐</div>
+  <div class="sub">DATE OF VISIT: ___________________</div>
+  <div class="box">
+    <div style="font-size:13px;">Provider</div><div class="line"></div>
+    <div style="font-size:13px;">Symptoms I want to discuss (with my chart attached)</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">Questions to ask</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">What I've already tried</div><div class="line"></div>
+    <div style="font-size:13px;">Notes from the visit</div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">11</div>
+</section>
+
+<!-- 12 MONTHLY REFLECTION -->
+<section class="page">
+  <div class="h-page">Monthly Reflection</div>
+  <div class="sub">CYCLE / MONTH: ___________________</div>
+  <div class="box">
+    <div style="font-size:13px;">Hardest days this cycle (and where they fell)</div><div class="line"></div>
+    <div style="font-size:13px;">What helped most</div><div class="line"></div>
+    <div style="font-size:13px;">What I'll try next cycle</div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">A win, however small</div><div class="line"></div>
+    <div style="font-size:13px;">Note to my future self</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">12</div>
+</section>
+
+<!-- 13 SUPPORT PLAN -->
+<section class="page">
+  <div class="h-page">My Support Plan 💜</div>
+  <div class="sub">FOR THE HARDER DAYS</div>
+  <div class="box">
+    <div style="font-size:13px;">People I can reach out to</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">Comforting things that ground me</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">Reminders for when it feels heavy</div>
+    <div class="row"><span><span class="cb"></span>This is tied to my cycle and it will pass</span></div>
+    <div class="row"><span><span class="cb"></span>I can lower my expectations of myself today</span></div>
+    <div class="row"><span><span class="cb"></span>It's okay to ask for help</span></div>
+  </div>
+  <p style="font-size:11px; color:#928499; margin-top:6px;">If you ever feel unsafe or in crisis, please contact a healthcare professional or a local crisis line right away.</p>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">13</div>
+</section>
+
+<!-- 14 NOTES -->
+<section class="page">
+  <div class="h-page">Notes &amp; Journaling</div>
+  <div class="sub">YOUR SPACE TO WRITE</div>
+  <div id="notes"></div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">14</div>
+</section>
+
+<script>
+  // Symptom chart: rows = symptoms, cols = days 1-31
+  var symptoms = ['Period (P)','Low mood','Anxiety','Mood swings','Irritability','Fatigue','Sleep','Cravings','Bloating','Focus'];
+  var html = '<table style="font-size:9px;"><tr><th style="width:84px;">Day →</th>';
+  for (var d=1; d<=31; d++){ html += '<th style="padding:4px 0; text-align:center; width:2.6%;">'+d+'</th>'; }
+  html += '</tr>';
+  for (var s=0; s<symptoms.length; s++){
+    html += '<tr><td style="font-size:9.5px;">'+symptoms[s]+'</td>';
+    for (var d=1; d<=31; d++){ html += '<td style="height:18px;"></td>'; }
+    html += '</tr>';
+  }
+  html += '</table>';
+  document.getElementById('chart').innerHTML = html;
+  // notes
+  var nl=''; for (var n=0;n<22;n++){ nl+='<div class="line"></div>'; }
+  document.getElementById('notes').innerHTML = nl;
+</script>
+</body>
+</html>

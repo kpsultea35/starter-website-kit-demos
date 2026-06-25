@@ -12,10 +12,15 @@ identity, and payment info — which only you can provide. Each takes minutes.
 
 | File | What it is |
 |---|---|
-| `pcos-planner-assets/PCOS-Cycle-Symptom-Planner.pdf` | ⭐ **The finished 20-page product** — ready to sell |
+| `pcos-planner-assets/PCOS-Cycle-Symptom-Planner.pdf` | ⭐ **The finished 20-page product** (pink theme) — ready to sell |
+| `pcos-planner-assets/PCOS-Planner-Sage-Theme.pdf` | Same planner in an earthy **Sage & Sand** theme — pick whichever look you prefer (or sell both) |
+| `pcos-planner-assets/PMDD-Symptom-Tracker-Planner.pdf` | ⭐ **Second product** — 14-page PMDD planner (lavender), your first expansion |
 | `pcos-planner-assets/FREE-PCOS-Daily-Tracker.pdf` | The finished free lead magnet |
+| `pcos-planner-assets/listing-1.png` … `listing-6.png` | ⭐ **6 ready-to-upload Etsy listing images** (hero, what's-inside, features, etc.) |
+| `pcos-planner-assets/listing-image-cover.png` | Extra cover image |
 | `pcos-planner-assets/landing-page.html` | Ready-to-deploy email opt-in page |
-| `pcos-planner-assets/planner.html` / `free-tracker.html` | Editable source (re-render anytime) |
+| `pcos-planner-assets/planner.html` / `free-tracker.html` / `pmdd-planner.html` / `planner-sage-theme.html` | Editable source (re-render anytime) |
+| `pcos-planner-assets/*.js` | Playwright scripts that regenerate the page captures + listing images |
 | `pcos-planner-launch-kit.md` | Etsy title, tags, description, pricing |
 | `pcos-planner-faceless-marketing-kit.md` | 6 video scripts + strategy |
 | `pcos-planner-lead-magnet-funnel.md` | Landing copy + 3 welcome emails |

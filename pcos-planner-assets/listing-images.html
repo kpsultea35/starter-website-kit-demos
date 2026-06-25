@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><title>Listing Images</title>
+<style>
+  :root{ --pink:#E8A6B8; --pink-soft:#F6E2E8; --mauve:#B57B91; --cream:#FBF6F1; --sage:#9CB39A; --sage-soft:#E7EFE6; --ink:#5A4A50; --line:#D8C7CE; }
+  *{ box-sizing:border-box; margin:0; padding:0; -webkit-print-color-adjust:exact; }
+  body{ font-family:'Nunito','Segoe UI',Arial,sans-serif; color:var(--ink); }
+  .slide{ width:1000px; height:1000px; position:relative; overflow:hidden;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:linear-gradient(160deg,var(--pink-soft),var(--cream) 55%,var(--sage-soft)); }
+  h1{ font-family:'Poppins','Segoe UI',sans-serif; color:var(--mauve); }
+  .tablet{ background:#3a2f33; border-radius:34px; padding:18px; box-shadow:0 30px 70px rgba(90,74,80,.35); }
+  .tablet img{ display:block; width:430px; border-radius:14px; }
+  .paper{ background:#fff; border-radius:10px; box-shadow:0 18px 40px rgba(90,74,80,.22); border:1px solid var(--line); }
+  .paper img{ display:block; width:360px; border-radius:8px; }
+  .badge{ background:var(--mauve); color:#fff; border-radius:40px; padding:10px 26px; font-weight:700; font-size:24px; }
+  .pill{ display:inline-block; background:#fff; border:1px solid var(--line); border-radius:30px; padding:10px 22px; margin:6px; font-size:22px; color:var(--mauve); font-weight:700; }
+  .grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; width:880px; }
+  .grid img{ width:100%; border-radius:8px; box-shadow:0 8px 20px rgba(90,74,80,.18); border:1px solid var(--line); }
+  .feat{ font-size:30px; margin:14px 0; color:var(--ink); }
+  .feat b{ color:var(--mauve); }
+  .corner{ position:absolute; font-size:90px; opacity:.25; }
+</style></head><body>
+
+<!-- SLIDE 1: HERO -->
+<div class="slide" id="s1">
+  <div style="position:absolute; top:60px; text-align:center; width:100%;">
+    <div style="font-size:40px;">🌸</div>
+    <h1 style="font-size:64px; line-height:1.05; margin-top:8px;">PCOS Cycle &amp;<br>Symptom Planner</h1>
+    <div style="font-size:28px; color:var(--pink); margin-top:14px;">track your cycle, symptoms &amp; appointments</div>
+  </div>
+  <div class="tablet" style="margin-top:160px;"><img src="page-01.png"></div>
+  <div class="badge" style="position:absolute; bottom:70px;">20 pages • printable + digital</div>
+</div>
+
+<!-- SLIDE 2: WHAT'S INSIDE -->
+<div class="slide" id="s2">
+  <h1 style="font-size:54px; margin-bottom:8px;">What's inside 🌸</h1>
+  <div style="font-size:26px; color:var(--pink); margin-bottom:26px;">20 beautifully designed pages</div>
+  <div class="grid">
+    <img src="page-03.png"><img src="page-04.png"><img src="page-06.png"><img src="page-07.png">
+    <img src="page-09.png"><img src="page-13.png"><img src="page-14.png"><img src="page-16.png">
+  </div>
+  <div style="margin-top:26px;">
+    <span class="pill">cycle</span><span class="pill">symptoms</span><span class="pill">mood</span><span class="pill">sleep</span><span class="pill">appointments</span>
+  </div>
+</div>
+
+<!-- SLIDE 3: DIFFERENTIATOR -->
+<div class="slide" id="s3">
+  <div class="corner" style="top:30px; left:40px;">⭐</div>
+  <h1 style="font-size:50px; text-align:center; line-height:1.1; margin-bottom:30px;">Walk into your<br>appointments prepared</h1>
+  <div style="display:flex; gap:30px; align-items:center;">
+    <div class="paper"><img src="page-14.png"></div>
+    <div class="paper"><img src="page-15.png"></div>
+  </div>
+  <div style="margin-top:34px; text-align:center;">
+    <div class="feat">📋 <b>Appointment prep</b> + <b>lab results</b> pages</div>
+    <div style="font-size:24px; color:var(--ink);">log symptoms, questions &amp; bloodwork in one place</div>
+  </div>
+</div>
+
+<!-- SLIDE 4: ANY DEVICE -->
+<div class="slide" id="s4">
+  <h1 style="font-size:54px; text-align:center; margin-bottom:36px;">Printable + Digital<br>for any device</h1>
+  <div style="display:flex; gap:40px; align-items:flex-end;">
+    <div class="tablet"><img src="page-03.png"></div>
+    <div class="paper" style="transform:rotate(-4deg);"><img src="page-04.png"></div>
+  </div>
+  <div style="margin-top:40px;">
+    <span class="pill">US Letter</span><span class="pill">A4</span><span class="pill">A5</span><span class="pill">GoodNotes</span>
+  </div>
+</div>
+
+<!-- SLIDE 5: FEATURES -->
+<div class="slide" id="s5">
+  <h1 style="font-size:54px; margin-bottom:34px;">Track everything 🩷</h1>
+  <div style="text-align:left;">
+    <div class="feat">🩸 <b>Cycle &amp; period</b> tracker</div>
+    <div class="feat">📝 <b>Daily symptom</b> log (mood, energy, bloating &amp; more)</div>
+    <div class="feat">😴 <b>Sleep, energy &amp; hydration</b></div>
+    <div class="feat">🍽️ <b>Meals &amp; movement</b></div>
+    <div class="feat">💊 <b>Supplements &amp; medication</b></div>
+    <div class="feat">📋 <b>Appointment prep &amp; lab results</b></div>
+    <div class="feat">🌱 <b>Reflection, goals &amp; self-care</b></div>
+  </div>
+</div>
+
+<!-- SLIDE 6: CTA -->
+<div class="slide" id="s6">
+  <div style="font-size:60px;">🌸</div>
+  <h1 style="font-size:58px; text-align:center; line-height:1.1; margin:16px 0;">Instant<br>download</h1>
+  <div style="font-size:28px; color:var(--ink); text-align:center; max-width:640px; line-height:1.5;">
+    Get your files immediately after purchase.<br>Print at home or use on your tablet.
+  </div>
+  <div style="margin-top:34px;">
+    <span class="pill">undated</span><span class="pill">3 sizes</span><span class="pill">reusable</span>
+  </div>
+  <div class="badge" style="margin-top:40px;">PCOS Cycle &amp; Symptom Planner</div>
+  <div style="position:absolute; bottom:50px; font-size:18px; color:#b9a7ae;">Personal tracking tool — not medical advice</div>
+</div>
+
+</body></html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PCOS Cycle & Symptom Planner</title>
+<style>
+  @page { size: Letter; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --pink:#A99B86; --pink-soft:#ECE4D6; --mauve:#5E7558; --cream:#FAF6EF;
+    --sage:#C2A98F; --sage-soft:#E4EADD; --ink:#4F4A42; --line:#D9CFC0;
+  }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:'Nunito','Lato',Arial,sans-serif; color:var(--ink); }
+  .page{
+    width:8.5in; height:11in; padding:0.6in 0.7in; position:relative;
+    page-break-after:always; background:var(--cream); display:flex; flex-direction:column;
+  }
+  .page:last-child{ page-break-after:auto; }
+  h1{ font-family:'Poppins','Quicksand',sans-serif; }
+  .h-page{ font-family:'Poppins',sans-serif; font-size:24px; color:var(--mauve); font-weight:700; margin-bottom:4px; }
+  .sub{ font-size:12px; color:var(--pink); margin-bottom:16px; letter-spacing:.5px; }
+  .meta{ font-size:13px; color:var(--ink); }
+  .footer{ position:absolute; bottom:0.35in; left:0.7in; right:0.7in; text-align:center;
+    font-size:9px; color:#B9A7AE; border-top:1px solid var(--line); padding-top:6px; }
+  .pg{ position:absolute; bottom:0.35in; right:0.7in; font-size:9px; color:#B9A7AE; }
+  .box{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px 18px; margin-bottom:14px; }
+  .row{ display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px dashed var(--line); font-size:13px; }
+  .row:last-child{ border-bottom:none; }
+  .scale span{ display:inline-block; width:22px; height:22px; line-height:22px; text-align:center;
+    border:1px solid var(--line); border-radius:50%; margin-left:5px; font-size:11px; color:var(--mauve); }
+  .cells{ display:flex; gap:6px; flex-wrap:wrap; }
+  .cb{ display:inline-block; width:15px; height:15px; border:1.5px solid var(--mauve); border-radius:4px; margin-right:5px; vertical-align:middle; }
+  .line{ border-bottom:1px solid var(--line); height:20px; margin:8px 0; }
+  table{ width:100%; border-collapse:collapse; font-size:12px; }
+  th{ background:var(--sage-soft); color:var(--ink); font-weight:700; padding:7px 6px; text-align:left; border:1px solid var(--line); }
+  td{ padding:9px 6px; border:1px solid var(--line); }
+  .cal{ display:grid; grid-template-columns:repeat(7,1fr); gap:4px; }
+  .cal .d{ background:#fff; border:1px solid var(--line); border-radius:8px; height:54px; font-size:9px; color:#C9B6BD; padding:3px; }
+  .cal .hd{ background:var(--pink-soft); text-align:center; font-weight:700; color:var(--mauve); height:auto; padding:6px 0; font-size:11px; }
+  .legend{ font-size:11px; color:var(--ink); margin-top:10px; }
+  .pill{ display:inline-block; border:1px solid var(--line); border-radius:20px; padding:4px 12px; margin:3px 4px 3px 0; font-size:12px; background:#fff; }
+  .flex2{ display:flex; gap:14px; }
+  .flex2>div{ flex:1; }
+  .grid31{ display:grid; grid-template-columns:repeat(8,1fr); gap:4px; align-items:center; font-size:10px; }
+  .note-lines .line{ margin:14px 0; }
+  /* Cover */
+  .cover{ background:linear-gradient(160deg,var(--pink-soft),var(--cream) 60%,var(--sage-soft)); align-items:center; justify-content:center; text-align:center; }
+  .cover .flower{ font-size:60px; margin-bottom:10px; }
+  .cover h1{ font-size:52px; color:var(--mauve); line-height:1.05; }
+  .cover .tag{ font-size:18px; color:var(--pink); margin-top:14px; font-family:'Poppins',sans-serif; }
+  .cover .feats{ margin-top:26px; }
+  .cover .shop{ position:absolute; bottom:0.6in; font-size:12px; color:#B9A7AE; }
+  .intro p{ font-size:14px; line-height:1.7; margin-bottom:12px; }
+  .intro li{ font-size:14px; line-height:1.8; margin-left:20px; }
+  .disc{ font-size:11px; color:#9b8990; background:#fff; border:1px dashed var(--line); border-radius:12px; padding:12px 14px; margin-top:14px; line-height:1.6; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER -->
+<section class="page cover">
+  <div class="flower">🌸</div>
+  <h1>PCOS<br>Cycle &amp; Symptom<br>Planner</h1>
+  <div class="tag">Your all-in-one space to track, reflect &amp; prepare</div>
+  <div class="feats"><span class="pill">undated</span><span class="pill">printable</span><span class="pill">digital</span></div>
+  <div class="shop">[ your shop name ]</div>
+</section>
+
+<!-- PAGE 2: WELCOME -->
+<section class="page intro">
+  <div class="h-page">Welcome 🌸</div>
+  <div class="sub">HOW TO USE THIS PLANNER</div>
+  <p>Living with PCOS means a lot to keep track of. This planner gives you <b>one calm place</b> to track your cycle, symptoms, mood, energy, and everything you want to remember for your next appointment.</p>
+  <ul>
+    <li>Print it, or import the PDF into a note app (GoodNotes, Notability)</li>
+    <li>Fill in a little each day — no pressure to be perfect</li>
+    <li>Use the monthly reflection to spot your own patterns</li>
+    <li>Bring the appointment-prep pages to your doctor visits</li>
+  </ul>
+  <p style="margin-top:12px;">Take what helps, leave what doesn't. This is <b>your</b> space. 💗</p>
+  <div class="disc"><b>Disclaimer:</b> This planner is a personal organization and tracking tool only. It is not medical advice and is not intended to diagnose, treat, cure, or prevent any condition. Always consult a qualified healthcare provider for medical guidance.</div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">2</div>
+</section>
+
+<!-- PAGE 3: MONTHLY CYCLE OVERVIEW -->
+<section class="page">
+  <div class="h-page">Monthly Cycle Overview</div>
+  <div class="sub">MONTH: ___________________</div>
+  <div class="cal">
+    <div class="d hd">S</div><div class="d hd">M</div><div class="d hd">T</div><div class="d hd">W</div><div class="d hd">T</div><div class="d hd">F</div><div class="d hd">S</div>
+  </div>
+  <div class="cal" style="margin-top:4px;">
+    <!-- 35 day cells -->
+    <div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div>
+    <div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div>
+    <div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div>
+    <div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div>
+    <div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div>
+  </div>
+  <div class="legend">Legend:&nbsp; 🔴 Period&nbsp;&nbsp; 🟡 Spotting&nbsp;&nbsp; 🟢 Ovulation window&nbsp;&nbsp; ⭐ Symptoms</div>
+  <div class="box" style="margin-top:14px;">
+    <div class="row"><span>Cycle start date</span><span>__________</span></div>
+    <div class="row"><span>Cycle length</span><span>______ days</span></div>
+    <div class="row"><span>Period length</span><span>______ days</span></div>
+    <div class="row"><span>Notes</span><span>________________________</span></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">3</div>
+</section>
+
+<!-- PAGE 4: DAILY SYMPTOM TRACKER -->
+<section class="page">
+  <div class="h-page">Daily Symptom Tracker</div>
+  <div class="sub">DATE: ___________________ &nbsp;&nbsp; RATE EACH 1 (LOW) – 5 (HIGH)</div>
+  <div class="box">
+    <div class="row scale"><span>Mood</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Energy</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Bloating</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Cravings</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Acne / skin</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Hair changes</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Headache</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Pain / cramps</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Sleep quality</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">Other symptoms</div><div class="line"></div>
+    <div style="font-size:13px;">Notes</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">4</div>
+</section>
+
+<!-- PAGE 5: PERIOD & FLOW LOG -->
+<section class="page">
+  <div class="h-page">Period &amp; Flow Log</div>
+  <div class="sub">MONTH: ___________________</div>
+  <div class="box">
+    <div class="row"><span>Start date</span><span>__________</span></div>
+    <div class="row"><span>End date</span><span>__________</span></div>
+    <div class="row"><span>Cycle length</span><span>______ days</span></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px; margin-bottom:8px;">Flow level</div>
+    <span class="pill">Light</span><span class="pill">Medium</span><span class="pill">Heavy</span><span class="pill">Very heavy</span>
+    <div style="font-size:13px; margin-top:12px;">Color / notes</div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px; margin-bottom:10px;">Track each day</div>
+    <div class="cells">
+      <span><span class="cb"></span>Day 1</span>&nbsp;&nbsp;<span><span class="cb"></span>Day 2</span>&nbsp;&nbsp;<span><span class="cb"></span>Day 3</span>&nbsp;&nbsp;<span><span class="cb"></span>Day 4</span>&nbsp;&nbsp;<span><span class="cb"></span>Day 5</span>&nbsp;&nbsp;<span><span class="cb"></span>Day 6</span>&nbsp;&nbsp;<span><span class="cb"></span>Day 7</span>
+    </div>
+    <div style="font-size:13px; margin-top:14px;">Symptoms this period</div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">5</div>
+</section>
+
+<!-- PAGE 6: MOOD & MENTAL HEALTH -->
+<section class="page">
+  <div class="h-page">Mood &amp; Mental Health</div>
+  <div class="sub">DATE: ___________________</div>
+  <div class="box" style="text-align:center;">
+    <div style="font-size:13px; margin-bottom:10px;">Today's mood</div>
+    <span style="font-size:34px;">😀&nbsp;&nbsp;🙂&nbsp;&nbsp;😐&nbsp;&nbsp;😟&nbsp;&nbsp;😢</span>
+  </div>
+  <div class="box">
+    <div class="row scale"><span>Anxiety level</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Stress level</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Overwhelm</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">What affected my mood today</div><div class="line"></div>
+    <div style="font-size:13px;">One thing I'm grateful for</div><div class="line"></div>
+    <div style="font-size:13px;">Journaling</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">6</div>
+</section>
+
+<!-- PAGE 7: SLEEP TRACKER -->
+<section class="page">
+  <div class="h-page">Sleep Tracker</div>
+  <div class="sub">WEEK OF: ___________________</div>
+  <table>
+    <tr><th>Day</th><th>Bedtime</th><th>Wake</th><th>Hours</th><th>Quality (1–5)</th></tr>
+    <tr><td>Mon</td><td></td><td></td><td></td><td>1 2 3 4 5</td></tr>
+    <tr><td>Tue</td><td></td><td></td><td></td><td>1 2 3 4 5</td></tr>
+    <tr><td>Wed</td><td></td><td></td><td></td><td>1 2 3 4 5</td></tr>
+    <tr><td>Thu</td><td></td><td></td><td></td><td>1 2 3 4 5</td></tr>
+    <tr><td>Fri</td><td></td><td></td><td></td><td>1 2 3 4 5</td></tr>
+    <tr><td>Sat</td><td></td><td></td><td></td><td>1 2 3 4 5</td></tr>
+    <tr><td>Sun</td><td></td><td></td><td></td><td>1 2 3 4 5</td></tr>
+  </table>
+  <div class="box" style="margin-top:16px;">
+    <div style="font-size:13px;">Notes / patterns</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">7</div>
+</section>
+
+<!-- PAGE 8: ENERGY & FATIGUE -->
+<section class="page">
+  <div class="h-page">Energy &amp; Fatigue</div>
+  <div class="sub">DATE: ___________________</div>
+  <div class="box">
+    <div class="row scale"><span>Morning energy</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Afternoon energy</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Evening energy</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">Energy boosters today</div><div class="line"></div><div class="line"></div>
+    <div style="font-size:13px;">Energy drainers today</div><div class="line"></div><div class="line"></div>
+    <div style="font-size:13px;">Notes</div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">8</div>
+</section>
+
+<!-- PAGE 9: MEAL & NUTRITION -->
+<section class="page">
+  <div class="h-page">Meal &amp; Nutrition Log</div>
+  <div class="sub">DATE: ___________________ &nbsp;&nbsp; (LOGGING ONLY)</div>
+  <div class="box">
+    <div style="font-size:13px;">Breakfast</div><div class="line"></div>
+    <div style="font-size:13px;">Lunch</div><div class="line"></div>
+    <div style="font-size:13px;">Dinner</div><div class="line"></div>
+    <div style="font-size:13px;">Snacks</div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">How did foods make me feel?</div><div class="line"></div>
+    <div style="font-size:13px; margin-top:8px;">Water</div>
+    <div class="cells" style="margin-top:6px;"><span class="cb"></span><span class="cb"></span><span class="cb"></span><span class="cb"></span><span class="cb"></span><span class="cb"></span><span class="cb"></span><span class="cb"></span> &nbsp;<span style="font-size:11px;color:#B9A7AE;">(each box = 1 glass)</span></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">9</div>
+</section>
+
+<!-- PAGE 10: MOVEMENT -->
+<section class="page">
+  <div class="h-page">Movement Log</div>
+  <div class="sub">DATE: ___________________</div>
+  <div class="box">
+    <div style="font-size:13px;">Activity</div><div class="line"></div>
+    <div class="row"><span>Duration</span><span>______ min</span></div>
+    <div class="row"><span>Intensity</span><span><span class="pill">Low</span><span class="pill">Med</span><span class="pill">High</span></span></div>
+    <div style="font-size:13px; margin-top:8px;">How I felt after</div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px; margin-bottom:10px;">Weekly movement</div>
+    <div class="cells"><span><span class="cb"></span>M</span>&nbsp;&nbsp;<span><span class="cb"></span>T</span>&nbsp;&nbsp;<span><span class="cb"></span>W</span>&nbsp;&nbsp;<span><span class="cb"></span>T</span>&nbsp;&nbsp;<span><span class="cb"></span>F</span>&nbsp;&nbsp;<span><span class="cb"></span>S</span>&nbsp;&nbsp;<span><span class="cb"></span>S</span></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">10</div>
+</section>
+
+<!-- PAGE 11: SUPPLEMENT & MED -->
+<section class="page">
+  <div class="h-page">Supplement &amp; Medication Tracker</div>
+  <div class="sub">WEEK OF: ___________________ &nbsp;&nbsp; (TRACKING ONLY)</div>
+  <table>
+    <tr><th>Name / Item</th><th>Dose</th><th>Time</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th><th>S</th></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <div class="box" style="margin-top:16px;">
+    <div style="font-size:13px;">Notes</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">11</div>
+</section>
+
+<!-- PAGE 12: HYDRATION -->
+<section class="page">
+  <div class="h-page">Hydration Tracker</div>
+  <div class="sub">MONTH: ___________________ &nbsp;&nbsp; DAILY GOAL: ______ GLASSES</div>
+  <table>
+    <tr><th>Day</th><th colspan="8">Glasses (tick each)</th></tr>
+    <!-- generate rows 1..16 in two columns visually; keep simple: 16 rows -->
+  </table>
+  <div class="grid31" style="margin-top:12px;">
+    <div><b>Day</b></div><div>💧</div><div>💧</div><div>💧</div><div>💧</div><div>💧</div><div>💧</div><div>💧</div>
+    <!-- 31 day rows -->
+    <!-- ROWS -->
+  </div>
+  <div id="hydra"></div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">12</div>
+</section>
+
+<!-- PAGE 13: HABIT TRACKER -->
+<section class="page">
+  <div class="h-page">Monthly Habit Tracker</div>
+  <div class="sub">MONTH: ___________________</div>
+  <div id="habit"></div>
+  <div class="box" style="margin-top:14px;">
+    <div style="font-size:13px;">Win of the month</div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">13</div>
+</section>
+
+<!-- PAGE 14: APPOINTMENT PREP -->
+<section class="page">
+  <div class="h-page">Appointment Prep ⭐</div>
+  <div class="sub">DATE OF VISIT: ___________________</div>
+  <div class="box">
+    <div style="font-size:13px;">Doctor / clinic</div><div class="line"></div>
+    <div style="font-size:13px; margin-top:6px;">Symptoms I want to discuss</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">Questions to ask</div>
+    <div class="line"></div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">Current medications / supplements</div><div class="line"></div>
+    <div style="font-size:13px;">Notes from the visit</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">14</div>
+</section>
+
+<!-- PAGE 15: LAB RESULTS -->
+<section class="page">
+  <div class="h-page">Lab Results Tracker ⭐</div>
+  <div class="sub">KEEP YOUR BLOODWORK IN ONE PLACE</div>
+  <table>
+    <tr><th>Date</th><th>Test name</th><th>Result</th><th>Notes</th></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
+    <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
+  </table>
+  <div class="box" style="margin-top:16px;">
+    <div style="font-size:13px;">Questions about my results</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">15</div>
+</section>
+
+<!-- PAGE 16: MONTHLY REFLECTION -->
+<section class="page">
+  <div class="h-page">Monthly Reflection</div>
+  <div class="sub">MONTH: ___________________</div>
+  <div class="box">
+    <div style="font-size:13px;">What improved this month</div><div class="line"></div><div class="line"></div>
+    <div style="font-size:13px;">What felt harder</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">Patterns I noticed</div><div class="line"></div>
+    <div style="font-size:13px;">What I want to discuss with my doctor</div><div class="line"></div>
+    <div style="font-size:13px;">Goals for next month</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">16</div>
+</section>
+
+<!-- PAGE 17: SYMPTOM PATTERN REVIEW -->
+<section class="page">
+  <div class="h-page">Symptom Pattern Review</div>
+  <div class="sub">QUARTER: ___________________</div>
+  <table>
+    <tr><th>Symptom</th><th>Month 1</th><th>Month 2</th><th>Month 3</th><th>Trend</th></tr>
+    <tr><td>Mood</td><td></td><td></td><td></td><td>↑ → ↓</td></tr>
+    <tr><td>Energy</td><td></td><td></td><td></td><td>↑ → ↓</td></tr>
+    <tr><td>Cycle length</td><td></td><td></td><td></td><td>↑ → ↓</td></tr>
+    <tr><td>Bloating</td><td></td><td></td><td></td><td>↑ → ↓</td></tr>
+    <tr><td>Skin</td><td></td><td></td><td></td><td>↑ → ↓</td></tr>
+    <tr><td>Sleep</td><td></td><td></td><td></td><td>↑ → ↓</td></tr>
+  </table>
+  <div class="box" style="margin-top:16px;">
+    <div style="font-size:13px;">Biggest takeaway</div><div class="line"></div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">17</div>
+</section>
+
+<!-- PAGE 18: GOAL SETTING -->
+<section class="page">
+  <div class="h-page">My Goals 🌱</div>
+  <div class="sub">SET YOUR INTENTION FOR THIS SEASON</div>
+  <div class="box">
+    <div style="font-size:13px;">Main focus this season</div><div class="line"></div>
+  </div>
+  <div class="box">
+    <div class="row"><span>Health goal</span><span style="flex:1; border-bottom:1px solid var(--line); margin-left:12px;">&nbsp;</span></div>
+    <div class="row"><span>Habit goal</span><span style="flex:1; border-bottom:1px solid var(--line); margin-left:12px;">&nbsp;</span></div>
+    <div class="row"><span>Self-care goal</span><span style="flex:1; border-bottom:1px solid var(--line); margin-left:12px;">&nbsp;</span></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px;">Why it matters to me</div><div class="line"></div><div class="line"></div>
+    <div style="font-size:13px;">First small step</div><div class="line"></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">18</div>
+</section>
+
+<!-- PAGE 19: SELF-CARE CHECKLIST -->
+<section class="page">
+  <div class="h-page">Self-Care Checklist 💗</div>
+  <div class="sub">SMALL THINGS, BIG DIFFERENCE</div>
+  <div class="box">
+    <div class="row"><span><span class="cb"></span>Drank enough water</span></div>
+    <div class="row"><span><span class="cb"></span>Moved my body</span></div>
+    <div class="row"><span><span class="cb"></span>Ate nourishing meals</span></div>
+    <div class="row"><span><span class="cb"></span>Got fresh air</span></div>
+    <div class="row"><span><span class="cb"></span>Rested when needed</span></div>
+    <div class="row"><span><span class="cb"></span>Did something I enjoy</span></div>
+    <div class="row"><span><span class="cb"></span>Took my supplements / meds</span></div>
+    <div class="row"><span><span class="cb"></span>Was kind to myself</span></div>
+  </div>
+  <div class="box">
+    <div style="font-size:13px; margin-bottom:8px;">Add your own</div>
+    <div class="row"><span><span class="cb"></span>________________________</span><span><span class="cb"></span>________________________</span></div>
+  </div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">19</div>
+</section>
+
+<!-- PAGE 20: NOTES -->
+<section class="page note-lines">
+  <div class="h-page">Notes &amp; Journaling</div>
+  <div class="sub">YOUR SPACE TO WRITE</div>
+  <div id="notes"></div>
+  <div class="footer">Not medical advice — for personal tracking only.</div>
+  <div class="pg">20</div>
+</section>
+
+<script>
+  // Hydration day rows (1-31)
+  var hydra = document.getElementById('hydra');
+  var grid = document.querySelector('.grid31');
+  for (var d=1; d<=31; d++){
+    var cells = '<div>'+d+'</div>';
+    for (var g=0; g<7; g++){ cells += '<div><span class="cb" style="width:12px;height:12px;"></span></div>'; }
+    grid.insertAdjacentHTML('beforeend', cells);
+  }
+  // Habit tracker grid
+  var habit = document.getElementById('habit');
+  var h = '<table><tr><th style="width:38%;">Habit</th>';
+  for (var i=1;i<=15;i++){ h += '<th style="padding:6px 2px; text-align:center;">'+i+'</th>'; }
+  h += '</tr>';
+  for (var r=0;r<8;r++){
+    h += '<tr><td>&nbsp;</td>';
+    for (var c=1;c<=15;c++){ h += '<td style="text-align:center;"></td>'; }
+    h += '</tr>';
+  }
+  h += '</table><div style="font-size:10px;color:#B9A7AE;margin-top:4px;">(Days 1–15 shown; print a second copy for 16–31)</div>';
+  habit.innerHTML = h;
+  // Notes lines
+  var notes = document.getElementById('notes');
+  var nl = '';
+  for (var n=0;n<22;n++){ nl += '<div class="line"></div>'; }
+  notes.innerHTML = nl;
+</script>
+</body>
+</html>
