@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free PCOS Daily Tracker 🌸</title>
+<!--
+  HOW TO USE THIS PAGE
+  ====================
+  Option A (easiest): Recreate this layout inside MailerLite/Beehiiv's free
+  landing-page builder and paste the copy.
+  Option B (free hosting): Deploy this file as-is to Netlify Drop, Cloudflare
+  Pages, or GitHub Pages, then connect the form to your email tool:
+    - Replace FORM_ACTION_URL below with your MailerLite/Beehiiv embedded-form
+      action URL (Forms > Embedded > "action" attribute), OR
+    - Use a free Formspree endpoint (formspree.io) and have it forward signups.
+  After someone subscribes, your email tool sends them the free tracker PDF
+  automatically (set this in the email tool's automation — copy is in the
+  lead-magnet-funnel doc).
+-->
+<style>
+  :root{ --pink:#E8A6B8; --pink-soft:#F6E2E8; --mauve:#B57B91; --cream:#FBF6F1; --sage:#9CB39A; --sage-soft:#E7EFE6; --ink:#5A4A50; --line:#D8C7CE; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:'Nunito','Segoe UI',system-ui,Arial,sans-serif; color:var(--ink);
+    background:linear-gradient(160deg,var(--pink-soft),var(--cream) 55%,var(--sage-soft)); min-height:100vh;
+    display:flex; align-items:center; justify-content:center; padding:24px; }
+  .card{ background:#fff; max-width:460px; width:100%; border-radius:24px; padding:40px 32px;
+    box-shadow:0 20px 60px rgba(181,123,145,.18); text-align:center; }
+  .flower{ font-size:46px; }
+  h1{ font-family:'Poppins','Segoe UI',sans-serif; color:var(--mauve); font-size:30px; margin:8px 0 12px; line-height:1.15; }
+  p.sub{ font-size:16px; line-height:1.6; color:var(--ink); margin-bottom:24px; }
+  form{ display:flex; flex-direction:column; gap:12px; }
+  input[type=email]{ padding:14px 16px; border:1.5px solid var(--line); border-radius:12px; font-size:16px; outline:none; }
+  input[type=email]:focus{ border-color:var(--pink); }
+  button{ background:var(--mauve); color:#fff; border:none; border-radius:12px; padding:15px; font-size:16px; font-weight:700; cursor:pointer; transition:.2s; }
+  button:hover{ background:#9c6379; }
+  .fine{ font-size:12px; color:#9b8990; margin-top:14px; }
+  .feats{ margin:22px 0 4px; text-align:left; display:inline-block; }
+  .feats li{ list-style:none; font-size:14px; margin:8px 0; }
+  .feats li::before{ content:"🌸 "; }
+  .disc{ font-size:11px; color:#b9a7ae; margin-top:20px; }
+  a.shoplink{ display:inline-block; margin-top:16px; font-size:13px; color:var(--mauve); }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="flower">🌸</div>
+    <h1>Free PCOS Daily Tracker</h1>
+    <p class="sub">One simple page to track your cycle, symptoms, mood &amp; energy — and feel more in control. Sent straight to your inbox.</p>
+
+    <form action="FORM_ACTION_URL" method="POST">
+      <input type="email" name="email" placeholder="Your email address" required>
+      <button type="submit">Send me the free tracker →</button>
+    </form>
+    <div class="fine">No spam, just helpful PCOS tips. Unsubscribe anytime.</div>
+
+    <ul class="feats">
+      <li>Cycle &amp; period at a glance</li>
+      <li>Mood, energy, sleep &amp; cravings</li>
+      <li>A prompt for your next appointment</li>
+    </ul>
+
+    <a class="shoplink" href="ETSY_LINK">Want the full 20-page planner? See it here →</a>
+    <div class="disc">This tracker is for personal organization only and is not medical advice.</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Free PCOS Daily Tracker</title>
+<style>
+  @page { size: Letter; margin: 0; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  :root{ --pink:#E8A6B8; --pink-soft:#F6E2E8; --mauve:#B57B91; --cream:#FBF6F1; --sage-soft:#E7EFE6; --ink:#5A4A50; --line:#D8C7CE; }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:'Nunito','Lato',Arial,sans-serif; color:var(--ink); }
+  .page{ width:8.5in; height:11in; padding:0.7in 0.8in; background:linear-gradient(160deg,var(--pink-soft),var(--cream) 55%,var(--sage-soft)); display:flex; flex-direction:column; position:relative; }
+  h1{ font-family:'Poppins',sans-serif; font-size:34px; color:var(--mauve); text-align:center; }
+  .date{ text-align:center; font-size:13px; color:var(--pink); margin:6px 0 18px; }
+  .box{ background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px 20px; margin-bottom:14px; }
+  .mood{ text-align:center; font-size:30px; letter-spacing:6px; }
+  .lbl{ font-size:13px; color:var(--ink); margin-bottom:8px; }
+  .row{ display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px dashed var(--line); font-size:14px; }
+  .row:last-child{ border-bottom:none; }
+  .scale span{ display:inline-block; width:24px; height:24px; line-height:24px; text-align:center; border:1px solid var(--line); border-radius:50%; margin-left:6px; font-size:12px; color:var(--mauve); }
+  .cb{ display:inline-block; width:16px; height:16px; border:1.5px solid var(--mauve); border-radius:4px; margin-right:6px; vertical-align:middle; }
+  .line{ border-bottom:1px solid var(--line); height:22px; }
+  .pill{ display:inline-block; border:1px solid var(--line); border-radius:20px; padding:5px 14px; margin:2px; font-size:13px; background:#fff; }
+  .cta{ margin-top:auto; text-align:center; background:var(--mauve); color:#fff; border-radius:16px; padding:16px; font-size:14px; line-height:1.5; }
+  .cta b{ font-size:15px; }
+  .disc{ text-align:center; font-size:9px; color:#9b8990; margin-top:10px; }
+</style>
+</head>
+<body>
+<section class="page">
+  <h1>PCOS Daily Tracker 🌸</h1>
+  <div class="date">Date: ____________________</div>
+
+  <div class="box">
+    <div class="lbl">How I feel today</div>
+    <div class="mood">😀 🙂 😐 😟 😢</div>
+  </div>
+
+  <div class="box">
+    <div class="row scale"><span>Energy</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Mood</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Bloating</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Cravings</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+    <div class="row scale"><span>Sleep</span><span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></span></div>
+  </div>
+
+  <div class="box">
+    <div class="row"><span>Period today?</span><span><span class="cb"></span>Yes&nbsp;&nbsp;<span class="cb"></span>No&nbsp;&nbsp;<span class="cb"></span>Spotting</span></div>
+    <div class="row"><span>Water</span><span><span class="cb"></span><span class="cb"></span><span class="cb"></span><span class="cb"></span><span class="cb"></span><span class="cb"></span><span class="cb"></span><span class="cb"></span></span></div>
+    <div class="row"><span>Movement</span><span><span class="cb"></span>Yes&nbsp;&nbsp;<span class="cb"></span>No</span></div>
+    <div class="row"><span>Supplements / meds taken</span><span><span class="cb"></span></span></div>
+  </div>
+
+  <div class="box">
+    <div class="lbl">One thing for my next appointment</div>
+    <div class="line"></div>
+    <div class="lbl" style="margin-top:10px;">Today's win</div>
+    <div class="line"></div>
+  </div>
+
+  <div class="cta">
+    💗 Love this? The full <b>20-page PCOS Cycle &amp; Symptom Planner</b><br>is in my shop → [ your link ]
+  </div>
+  <div class="disc">Not medical advice — for personal tracking only.</div>
+</section>
+</body>
+</html>
