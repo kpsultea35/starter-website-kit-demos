@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><title>PMDD + Bundle Images</title>
+<style>
+  :root{ --pink:#E8A6B8; --pink-soft:#F6E2E8; --mauve:#B57B91; --cream:#FBF6F1; --sage:#9CB39A; --sage-soft:#E7EFE6; --ink:#5A4A50; --line:#D8C7CE;
+    --plum:#7E5C97; --plum-soft:#ECE3F2; --plum-line:#D8CCE0; }
+  *{ box-sizing:border-box; margin:0; padding:0; -webkit-print-color-adjust:exact; }
+  body{ font-family:'Nunito','Segoe UI',Arial,sans-serif; color:var(--ink); }
+  .slide{ width:1000px; height:1000px; position:relative; overflow:hidden;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .plum-bg{ background:linear-gradient(160deg,var(--plum-soft),#FBF7FC 55%,#E6ECF2); }
+  .bundle-bg{ background:linear-gradient(160deg,#F6E2E8,#FBF7FC 50%,#ECE3F2); }
+  h1{ font-family:'Poppins','Segoe UI',sans-serif; }
+  .tablet{ background:#3a2f33; border-radius:34px; padding:18px; box-shadow:0 30px 70px rgba(90,74,80,.35); }
+  .tablet img{ display:block; width:430px; border-radius:14px; }
+  .paper{ background:#fff; border-radius:10px; box-shadow:0 18px 40px rgba(90,74,80,.22); border:1px solid var(--line); }
+  .paper img{ display:block; width:340px; border-radius:8px; }
+  .badge{ color:#fff; border-radius:40px; padding:10px 26px; font-weight:700; font-size:24px; }
+  .pill{ display:inline-block; background:#fff; border:1px solid var(--plum-line); border-radius:30px; padding:9px 20px; margin:5px; font-size:21px; color:var(--plum); font-weight:700; }
+  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; width:760px; }
+  .grid img{ width:100%; border-radius:8px; box-shadow:0 8px 20px rgba(90,74,80,.18); border:1px solid var(--line); }
+  .feat{ font-size:29px; margin:13px 0; color:var(--ink); }
+  .feat b{ color:var(--plum); }
+  .corner{ position:absolute; font-size:90px; opacity:.25; }
+</style></head><body>
+
+<!-- PMDD 1 HERO -->
+<div class="slide plum-bg" id="p1">
+  <div style="position:absolute; top:64px; text-align:center; width:100%;">
+    <div style="font-size:40px;">🌙</div>
+    <h1 style="font-size:60px; line-height:1.05; color:var(--plum); margin-top:8px;">PMDD Symptom<br>Tracker &amp; Planner</h1>
+    <div style="font-size:27px; color:#9b86ab; margin-top:14px;">see your pattern • feel prepared</div>
+  </div>
+  <div class="tablet" style="margin-top:170px;"><img src="pmdd-page-01.png"></div>
+  <div class="badge" style="position:absolute; bottom:70px; background:var(--plum);">14 pages • 2-cycle tracking</div>
+</div>
+
+<!-- PMDD 2 DIFFERENTIATOR: symptom chart -->
+<div class="slide plum-bg" id="p2">
+  <div class="corner" style="top:30px; right:40px;">⭐</div>
+  <h1 style="font-size:48px; text-align:center; line-height:1.1; color:var(--plum); margin-bottom:28px;">See your symptoms<br>across your whole cycle</h1>
+  <div class="paper" style="width:540px;"><img src="pmdd-page-05.png" style="width:540px;"></div>
+  <div style="margin-top:30px; text-align:center;">
+    <div class="feat">📊 <b>Monthly symptom chart</b> — shade by severity</div>
+    <div style="font-size:23px; color:var(--ink);">spot the luteal-phase pattern at a glance &amp; bring it to your doctor</div>
+  </div>
+</div>
+
+<!-- PMDD 3 WHAT'S INSIDE -->
+<div class="slide plum-bg" id="p3">
+  <h1 style="font-size:50px; color:var(--plum); margin-bottom:6px;">What's inside 🌙</h1>
+  <div style="font-size:25px; color:#9b86ab; margin-bottom:24px;">14 supportive pages</div>
+  <div class="grid">
+    <img src="pmdd-page-04.png"><img src="pmdd-page-05.png"><img src="pmdd-page-06.png">
+    <img src="pmdd-page-08.png"><img src="pmdd-page-11.png"><img src="pmdd-page-13.png">
+  </div>
+  <div style="margin-top:24px;">
+    <span class="pill">daily tracker</span><span class="pill">symptom chart</span><span class="pill">coping</span><span class="pill">support plan</span>
+  </div>
+</div>
+
+<!-- PMDD 4 FEATURES -->
+<div class="slide plum-bg" id="p4">
+  <h1 style="font-size:50px; color:var(--plum); margin-bottom:30px;">Made for the harder days 💜</h1>
+  <div style="text-align:left;">
+    <div class="feat">📝 <b>Daily symptom tracker</b> (emotional + physical)</div>
+    <div class="feat">📊 <b>Monthly &amp; 2-cycle</b> pattern charts</div>
+    <div class="feat">🌙 <b>Cycle-phase</b> orientation</div>
+    <div class="feat">🧰 <b>Triggers &amp; coping</b> toolkit</div>
+    <div class="feat">📋 <b>Appointment prep</b> pages</div>
+    <div class="feat">💜 <b>Support plan</b> for tough moments</div>
+  </div>
+  <div class="badge" style="margin-top:30px; background:var(--plum);">Instant download • printable + digital</div>
+</div>
+
+<!-- BUNDLE 1 HERO -->
+<div class="slide bundle-bg" id="b1">
+  <h1 style="font-size:56px; color:var(--mauve); text-align:center; margin-bottom:10px;">The Complete<br>Cycle &amp; Wellness Bundle</h1>
+  <div style="font-size:26px; color:var(--pink); margin-bottom:36px;">3 planners • one low price 🌸</div>
+  <div style="position:relative; height:340px; width:760px;">
+    <div class="paper" style="position:absolute; left:60px; top:20px; transform:rotate(-8deg);"><img src="pcos-cover.png" style="width:280px;"></div>
+    <div class="paper" style="position:absolute; left:240px; top:0; z-index:2;"><img src="sage-cover.png" style="width:280px;"></div>
+    <div class="paper" style="position:absolute; left:420px; top:20px; transform:rotate(8deg);"><img src="pmdd-page-01.png" style="width:280px;"></div>
+  </div>
+  <div class="badge" style="margin-top:24px; background:var(--mauve);">Save 30% vs buying separately</div>
+</div>
+
+<!-- BUNDLE 2 VALUE -->
+<div class="slide bundle-bg" id="b2">
+  <h1 style="font-size:52px; color:var(--mauve); margin-bottom:34px;">Everything you get 🩷</h1>
+  <div style="text-align:left; font-size:30px; line-height:1.9;">
+    <div>🌸 <b>PCOS Cycle &amp; Symptom Planner</b> (20 pages)</div>
+    <div>🌿 <b>Sage &amp; Sand theme</b> — same planner, second look</div>
+    <div>🌙 <b>PMDD Symptom Tracker</b> (14 pages)</div>
+    <div>📐 <b>3 print sizes</b> — Letter, A4, A5</div>
+    <div>💻 <b>Digital + printable</b> — use any device</div>
+  </div>
+  <div class="badge" style="margin-top:40px; background:var(--mauve); font-size:28px;">Best value 🌸</div>
+  <div style="position:absolute; bottom:46px; font-size:17px; color:#b9a7ae;">Personal tracking tools — not medical advice</div>
+</div>
+
+</body></html>
